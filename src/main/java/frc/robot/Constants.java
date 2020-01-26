@@ -37,4 +37,8 @@ public final class Constants {
     
     //HOW ZOOMER ARE YOU? (1 = max, 0 = no movement)
     public static final double SPEED_MULTIPLIER = .5;
+
+    //RAMP FORMULA VARIABLES
+    public static final double RAMP_MULTIPLIER = 1.75;
+    public static final double RAMP_SLOPE = .185;
 }

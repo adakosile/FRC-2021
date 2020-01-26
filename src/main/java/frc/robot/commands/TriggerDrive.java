@@ -16,6 +16,7 @@ import frc.robot.subsystems.DriveTrain;
 public class TriggerDrive extends CommandBase {
   private final DriveTrain driveTrain;
   private Timer timer;
+  private double currentValue;
   /**
    * Creates a new TriggerDrive.
    */
@@ -29,16 +30,35 @@ public class TriggerDrive extends CommandBase {
   @Override
   public void initialize() {
     timer = new Timer();
+    currentValue = 0.0;
+    timer.start();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if(RobotContainer.xbox.getBButtonPressed()){
+      driveTrain.setLeftMotors(0);
+      driveTrain.setRightMotors(0);
+      System.exit(0);
+    }
     double triggerVal = RobotContainer.xbox.getRawAxis(Constants.RIGHT_TRIGGER)
         - RobotContainer.xbox.getRawAxis(Constants.LEFT_TRIGGER);
+    
+    if(timer.hasPeriodPassed(.05)){
+      if(triggerVal==0){
+        currentValue=0;
+      }
+      else if(triggerVal>currentValue){
+        currentValue+=.01;
+      }
+      else{
+        currentValue-=.01;
+      }
+    }
     double stick = RobotContainer.xbox.getRawAxis(Constants.LEFT_STICK_X);
-    driveTrain.setLeftMotors(triggerVal - stick);
-    driveTrain.setRightMotors(triggerVal + stick);
+    driveTrain.setLeftMotors(currentValue - stick);
+    driveTrain.setRightMotors(currentValue + stick);
   }
 
   // Called once the command ends or is interrupted.
@@ -52,5 +72,17 @@ public class TriggerDrive extends CommandBase {
   @Override
   public boolean isFinished() {
     return false;
+  }
+
+  //returns the ideal power output based on the time the trigger has been pressed (in seconds)
+  private double rampSpeed(double time){
+    double ans =Constants.RAMP_MULTIPLIER * Math.sqrt(Constants.RAMP_SLOPE * time);
+    if(ans>1.0){
+      ans=1.0;
+    }
+    if(ans<0){
+      ans=0;
+    }
+    return ans;
   }
 }
