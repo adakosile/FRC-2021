@@ -53,6 +53,9 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
+    return null;
+  }
+  public Command getTeleOpCommand(){
     return triggerDrive;
   }
 }
