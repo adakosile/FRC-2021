@@ -14,16 +14,19 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class DriveTrain extends SubsystemBase {
-  private VictorSPX motorLeft1 = new VictorSPX(Constants.MOTOR_LEFT_1_ID);
-  private VictorSPX motorLeft2 = new VictorSPX(Constants.MOTOR_LEFT_2_ID);
-  private VictorSPX motorRight1 = new VictorSPX(Constants.MOTOR_RIGHT_1_ID);
-  private VictorSPX motorRight2 = new VictorSPX(Constants.MOTOR_RIGHT_2_ID);
+  private VictorSPX motorLeft1;
+  private VictorSPX motorLeft2;
+  private VictorSPX motorRight1;
+  private VictorSPX motorRight2;
 
   /**
    * Creates a new DriveTrain.
    */
   public DriveTrain() {
-
+    motorLeft1 = new VictorSPX(Constants.MOTOR_LEFT_1_ID);
+    motorLeft2 = new VictorSPX(Constants.MOTOR_LEFT_2_ID);
+    motorRight1 = new VictorSPX(Constants.MOTOR_RIGHT_1_ID);
+    motorRight2  = new VictorSPX(Constants.MOTOR_RIGHT_2_ID);
   }
 
   @Override
