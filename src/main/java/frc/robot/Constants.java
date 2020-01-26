@@ -34,7 +34,7 @@ public final class Constants {
     public static final int RIGHT_STICK_Y = 5;
     public static final int LEFT_TRIGGER = 2;
     public static final int RIGHT_TRIGGER = 3;
-
-    // HOW ZOOMER ARE YOU? (1 = max, 0 = no movement)
-    public static final double SPEED_MULTIPLIER = 1.0;
+    
+    //HOW ZOOMER ARE YOU? (1 = max, 0 = no movement)
+    public static final double SPEED_MULTIPLIER = .5;
 }

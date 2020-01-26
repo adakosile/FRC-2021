@@ -19,8 +19,8 @@ public class TriggerDrive extends CommandBase {
   /**
    * Creates a new TriggerDrive.
    */
-  public TriggerDrive(DriveTrain dt) {
-    driveTrain = dt;
+  public TriggerDrive(DriveTrain driveTrain) {
+    this.driveTrain = driveTrain;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(driveTrain);
   }
