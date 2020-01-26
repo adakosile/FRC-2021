@@ -13,7 +13,8 @@ import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveTrain;
 
 public class TriggerDrive extends CommandBase {
-  private final DriveTrain  driveTrain;
+  private final DriveTrain driveTrain;
+
   /**
    * Creates a new TriggerDrive.
    */
@@ -31,11 +32,12 @@ public class TriggerDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double triggerVal = RobotContainer.xbox.getRawAxis(Constants.RIGHT_TRIGGER) - RobotContainer.xbox.getRawAxis(Constants.LEFT_TRIGGER);
+    double triggerVal = RobotContainer.xbox.getRawAxis(Constants.RIGHT_TRIGGER)
+        - RobotContainer.xbox.getRawAxis(Constants.LEFT_TRIGGER);
     double stick = RobotContainer.xbox.getRawAxis(Constants.LEFT_STICK_X);
-  
-    driveTrain.setLeftMotors(triggerVal-stick);
-    driveTrain.setRightMotors(triggerVal+stick);
+
+    driveTrain.setLeftMotors(triggerVal - stick);
+    driveTrain.setRightMotors(triggerVal + stick);
   }
 
   // Called once the command ends or is interrupted.

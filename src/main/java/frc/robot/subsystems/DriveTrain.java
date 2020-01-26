@@ -26,7 +26,7 @@ public class DriveTrain extends SubsystemBase {
     motorLeft1 = new VictorSPX(Constants.MOTOR_LEFT_1_ID);
     motorLeft2 = new VictorSPX(Constants.MOTOR_LEFT_2_ID);
     motorRight1 = new VictorSPX(Constants.MOTOR_RIGHT_1_ID);
-    motorRight2  = new VictorSPX(Constants.MOTOR_RIGHT_2_ID);
+    motorRight2 = new VictorSPX(Constants.MOTOR_RIGHT_2_ID);
   }
 
   @Override
@@ -34,13 +34,13 @@ public class DriveTrain extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void setLeftMotors(double speed){
-    motorLeft1.set(ControlMode.PercentOutput, -speed*Constants.SPEED_MULTIPLIER);
-    motorLeft2.set(ControlMode.PercentOutput, -speed*Constants.SPEED_MULTIPLIER);
+  public void setLeftMotors(double speed) {
+    motorLeft1.set(ControlMode.PercentOutput, -speed * Constants.SPEED_MULTIPLIER);
+    motorLeft2.set(ControlMode.PercentOutput, -speed * Constants.SPEED_MULTIPLIER);
   }
 
-  public void setRightMotors(double speed){
-    motorRight1.set(ControlMode.PercentOutput, speed*Constants.SPEED_MULTIPLIER);
-    motorRight2.set(ControlMode.PercentOutput, speed*Constants.SPEED_MULTIPLIER);
+  public void setRightMotors(double speed) {
+    motorRight1.set(ControlMode.PercentOutput, speed * Constants.SPEED_MULTIPLIER);
+    motorRight2.set(ControlMode.PercentOutput, speed * Constants.SPEED_MULTIPLIER);
   }
 }
