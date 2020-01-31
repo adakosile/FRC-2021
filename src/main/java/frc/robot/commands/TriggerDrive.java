@@ -17,6 +17,7 @@ public class TriggerDrive extends CommandBase {
   private final DriveTrain driveTrain;
   private Timer timer;
   private double currentValue;
+  private boolean driving;
   /**
    * Creates a new TriggerDrive.
    */
@@ -32,6 +33,7 @@ public class TriggerDrive extends CommandBase {
     timer = new Timer();
     currentValue = 0.0;
     timer.start();
+    driving = false;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -45,15 +47,21 @@ public class TriggerDrive extends CommandBase {
     double triggerVal = RobotContainer.xbox.getRawAxis(Constants.RIGHT_TRIGGER)
         - RobotContainer.xbox.getRawAxis(Constants.LEFT_TRIGGER);
     
-    if(timer.hasPeriodPassed(.05)){
+    if(driving){
       if(triggerVal==0){
-        currentValue=0;
-      }
-      else if(triggerVal>currentValue){
-        currentValue+=.01;
+        driving=false;
+        timer.stop();
+        currentValue = 0;
       }
       else{
-        currentValue-=.01;
+        currentValue = rampSpeed(timer.get());
+      }
+    }
+    else{
+      if(triggerVal!=0){
+        driving=true;
+        timer.reset();
+        timer.start();
       }
     }
     double stick = RobotContainer.xbox.getRawAxis(Constants.LEFT_STICK_X);
