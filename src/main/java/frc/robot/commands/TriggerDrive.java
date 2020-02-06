@@ -54,7 +54,7 @@ public class TriggerDrive extends CommandBase {
         currentValue = 0;
       }
       else{
-        currentValue = rampSpeed(timer.get());
+        currentValue = rampSpeed(timer.get()) * Math.abs(triggerVal);
       }
     }
     else{
@@ -65,8 +65,14 @@ public class TriggerDrive extends CommandBase {
       }
     }
     double stick = RobotContainer.xbox.getRawAxis(Constants.LEFT_STICK_X);
-    driveTrain.setLeftMotors(currentValue - stick);
-    driveTrain.setRightMotors(currentValue + stick);
+    if(triggerVal>0){
+      driveTrain.setLeftMotors(currentValue - stick);
+      driveTrain.setRightMotors(currentValue + stick);
+    }
+    else{
+      driveTrain.setLeftMotors(-currentValue - stick);
+      driveTrain.setRightMotors(-currentValue + stick);
+    }
   }
 
   // Called once the command ends or is interrupted.

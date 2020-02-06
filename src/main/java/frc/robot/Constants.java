@@ -36,7 +36,7 @@ public final class Constants {
     public static final int RIGHT_TRIGGER = 3;
     
     //HOW ZOOMER ARE YOU? (1 = max, 0 = no movement)
-    public static final double SPEED_MULTIPLIER = .5;
+    public static final double SPEED_MULTIPLIER = 1;
 
     //RAMP FORMULA VARIABLES
     public static final double RAMP_MULTIPLIER = 1.75;
