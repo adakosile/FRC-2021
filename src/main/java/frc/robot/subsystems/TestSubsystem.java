@@ -17,7 +17,8 @@ public class TestSubsystem extends SubsystemBase {
   /**
    * Creates a new Arm.
    */
-  private VictorSPX motor;
+  private final VictorSPX motor;
+
   public TestSubsystem() {
     motor = new VictorSPX(1);
   }
@@ -27,7 +28,7 @@ public class TestSubsystem extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void moveMotor(double speed){
+  public void moveMotor(double speed) {
     motor.set(ControlMode.PercentOutput, speed * Constants.SPEED_MULTIPLIER);
   }
 }

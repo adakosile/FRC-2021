@@ -7,17 +7,20 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.TestSubsystem;;
 
-public class TestCommand extends CommandBase {
+public class TestAutonomous extends CommandBase {
+  boolean stop;
   private final TestSubsystem system;
+  private Timer timer;
   /**
    * Creates a new TestCommand.
    */
-  public TestCommand(TestSubsystem test) {
+  public TestAutonomous(TestSubsystem test) {
     system = test;
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -25,23 +28,32 @@ public class TestCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    stop=false;
+    timer = new Timer();
+    timer.start();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double stick = RobotContainer.xbox.getRawAxis(Constants.LEFT_STICK_Y);
-    system.moveMotor(stick);
+    if(!stop){
+      system.moveMotor(1.0*Constants.SPEED_MULTIPLIER);
+      if(timer.get()>1){
+        stop=true;
+        end(false);
+      }
+    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    system.moveMotor(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return stop;
   }
 }
