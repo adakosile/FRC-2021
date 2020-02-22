@@ -10,16 +10,16 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.TestSubsystem;;
+import frc.robot.subsystems.ClimbSystem;
 
-public class TestCommand extends CommandBase {
-  private final TestSubsystem system;
+public class ClimbCommand extends CommandBase {
+  private ClimbSystem climbSystem;
   /**
-   * Creates a new TestCommand.
+   * Creates a new ClimbCommand.
    */
-  public TestCommand(TestSubsystem test) {
-    system = test;
+  public ClimbCommand(ClimbSystem climbSystem) {
     // Use addRequirements() here to declare subsystem dependencies.
+    this.climbSystem = climbSystem;
   }
 
   // Called when the command is initially scheduled.
@@ -31,7 +31,7 @@ public class TestCommand extends CommandBase {
   @Override
   public void execute() {
     double stick = RobotContainer.xbox.getRawAxis(Constants.RIGHT_STICK_Y);
-    system.moveMotor(stick);
+    climbSystem.setClimbMotor(stick);
   }
 
   // Called once the command ends or is interrupted.

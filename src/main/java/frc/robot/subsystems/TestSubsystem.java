@@ -20,7 +20,7 @@ public class TestSubsystem extends SubsystemBase {
   private final VictorSPX motor;
 
   public TestSubsystem() {
-    motor = new VictorSPX(1);
+    motor = new VictorSPX(Constants.MOTOR_INTAKE_ID);
   }
 
   @Override

@@ -8,17 +8,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
-import frc.robot.RobotContainer;
-import frc.robot.subsystems.TestSubsystem;;
+import frc.robot.subsystems.ArmSystem;
 
-public class TestCommand extends CommandBase {
-  private final TestSubsystem system;
+public class ArmCommand extends CommandBase {
+  private ArmSystem armSystem;
   /**
-   * Creates a new TestCommand.
+   * Creates a new ArmCommand.
    */
-  public TestCommand(TestSubsystem test) {
-    system = test;
+  public ArmCommand(ArmSystem armSystem) {
+    this.armSystem = armSystem;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -30,8 +28,6 @@ public class TestCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double stick = RobotContainer.xbox.getRawAxis(Constants.RIGHT_STICK_Y);
-    system.moveMotor(stick);
   }
 
   // Called once the command ends or is interrupted.
